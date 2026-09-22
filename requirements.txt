@@ -1,0 +1,11 @@
+pandas>=2.2.0
+openpyxl>=3.1.0
+pyarrow>=15.0.0
+numpy>=1.26.0
+matplotlib>=3.8.0
+scikit-learn>=1.4.0
+pyyaml>=6.0
+tqdm>=4.66.0
+# only for a real (non-mock) classify run — install the one you use:
+# anthropic>=0.39.0
+# openai>=1.40.0
