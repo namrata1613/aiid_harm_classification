@@ -1,0 +1,39 @@
+# AIID harm-monitoring prep — configuration. Edit this, not the code.
+
+data:
+  # Latest weekly Excel export. Check for a newer one at
+  # https://incidentdatabase.ai/research/snapshots
+  excel_url: "https://pub-72b2b2fc36ec423189843747af98f80e.r2.dev/AIID_Excel_Export-20260914.xlsx"
+  excel_file: "src//AIID_Excel_Export-20260914.xlsx"   # cached download; used if present
+  sheet: "Incidents"
+  header_row: 1                          # real headers are the 2nd sheet row
+
+fields:
+  # The first column holds the incident id (its header is a section banner);
+  # ingest renames it to incident_id. The rest are matched case/space-insensitively.
+  date: "date"
+  year: "year"
+  title: "title"
+  description: "description"
+  # Ground-truth taxonomy to classify + validate against. MIT Risk Subdomain is
+  # ~89% filled (1,496 incidents) — the only taxonomy with enough labels.
+  target_taxonomy: "Risk Subdomain"
+
+classify:
+  # provider: "ollama" (local, free) | "grok" | "openai" | "anthropic" | "mock"
+  provider: "ollama"
+  model: "llama3.1"       # ollama: pull it first with `ollama pull llama3.1`
+  ollama_host: "http://localhost:11434"
+  temperature: 0          # deterministic classification
+  few_shot_k: 3           # 0 = zero-shot; set 3 to add 3 worked examples (held out from scoring)
+  sample: 200             # how many labeled incidents to classify (start small)
+  requests_per_second: 150  # ollama is local — safe to raise this a lot (e.g. 50)
+  max_retries: 5
+  # Other providers (set provider + model, and the env var):
+  #   grok      -> model "grok-4-fast",  env XAI_API_KEY     (uses $25 sign-up credit)
+  #   openai    -> model "gpt-4o-mini",  env OPENAI_API_KEY
+  #   anthropic -> model "claude-haiku-4-5-20251001", env ANTHROPIC_API_KEY
+
+run:
+  seed: 0
+  data_dir: "data_few_shot_3"

@@ -1,0 +1,22 @@
+{
+  "target_taxonomy": "Risk Subdomain",
+  "provider": "ollama",
+  "model": "llama3.1",
+  "n_evaluated": 1495,
+  "n_unmapped_or_error": 0,
+  "subdomain_level": {
+    "n_classes": 21,
+    "accuracy": 0.4763,
+    "cohen_kappa": 0.4083
+  },
+  "domain_level": {
+    "n_classes": 7,
+    "n_evaluated": 1495,
+    "accuracy": 0.6207,
+    "cohen_kappa": 0.5141,
+    "labels_unmapped_to_domain": []
+  },
+  "accuracy": 0.4763,
+  "cohen_kappa": 0.4083,
+  "headline": "The llama3.1 classifier reproduces AIID's human labels with 48% agreement (kappa=0.41) at the 21-way subdomain level, rising to 62% (kappa=0.51) at the 7-domain level, over 1495 incidents."
+}
