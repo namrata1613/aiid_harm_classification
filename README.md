@@ -9,7 +9,6 @@ taxonomy (7 domains, ~24 subdomains) using Llama 3.1 8B through
 [Ollama](https://ollama.com/), then scores the model's labels against AIID's
 human-assigned ones.
 
-The full write-up of the findings is in [`writeup.md`](writeup.md).
 
 ## Result
 
